@@ -1,0 +1,780 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Eloge The Analyst Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <style>
+        /* Reset & Base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Intro Section */
+        #intro {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(10,14,39,0.95) 0%, rgba(26,26,46,0.95) 100%);
+            position: relative;
+        }
+
+        #intro::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(24, 191, 239, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.1) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .tag {
+            display: inline-block;
+            background: rgba(24, 191, 239, 0.2);
+            border: 2px solid #18bfef;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(24, 191, 239, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(24, 191, 239, 0.8); }
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            margin: 1rem 0;
+            background: linear-gradient(135deg, #18bfef 0%, #9333ea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 3px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(24, 191, 239, 0.3);
+            padding: 0.7rem 1.5rem;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tech-badge:hover {
+            background: rgba(24, 191, 239, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(24, 191, 239, 0.3);
+        }
+
+        /* Header */
+        #header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(24, 191, 239, 0.2);
+        }
+
+        .logo {
+            color: #18bfef;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        #nav {
+            position: fixed;
+            top: 70px;
+            right: 2rem;
+            z-index: 999;
+        }
+
+        #nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        #nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        #nav a:hover,
+        #nav .active a {
+            color: #18bfef;
+        }
+
+        /* Main Content */
+        #main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Cards */
+        .post, article {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .post:hover, article:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(24, 191, 239, 0.2);
+            border-color: rgba(24, 191, 239, 0.5);
+        }
+
+        .posts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        /* Images */
+        .image {
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 1.5rem 0;
+        }
+
+        .image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Metrics */
+        .metric {
+            background: linear-gradient(135deg, rgba(24, 191, 239, 0.1) 0%, rgba(147, 51, 234, 0.1) 100%);
+            border-left: 4px solid #18bfef;
+            padding: 1rem 1.5rem;
+            margin: 1rem 0;
+            border-radius: 10px;
+        }
+
+        .metric-value {
+            display: block;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #18bfef;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            display: block;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            background: linear-gradient(135deg, #18bfef 0%, #9333ea 100%);
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+        }
+
+        .button:hover::before {
+            left: 100%;
+        }
+
+        .button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(24, 191, 239, 0.5);
+        }
+
+        .button.large {
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
+        }
+
+        .actions {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        /* Headers */
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #18bfef;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .major {
+            text-align: center;
+            margin: 4rem 0 3rem 0;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .major::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #18bfef, transparent);
+            margin: 2rem auto 0;
+        }
+
+        .date {
+            display: inline-block;
+            background: rgba(24, 191, 239, 0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #18bfef;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        #footer {
+            background: rgba(10, 14, 39, 0.98);
+            border-top: 1px solid rgba(24, 191, 239, 0.2);
+            padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .split {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Form */
+        form {
+            max-width: 600px;
+        }
+
+        .fields {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .field label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #18bfef;
+            font-weight: 600;
+        }
+
+        .field input,
+        .field textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #ffffff;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .field input:focus,
+        .field textarea:focus {
+            outline: none;
+            border-color: #18bfef;
+            box-shadow: 0 0 20px rgba(24, 191, 239, 0.3);
+        }
+
+        /* Icons */
+        .icons {
+            list-style: none;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(24, 191, 239, 0.2);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: #18bfef;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .icons a:hover {
+            background: #18bfef;
+            color: #0a0e27;
+            transform: translateY(-5px);
+        }
+
+        /* Copyright */
+        #copyright {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        #copyright ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        #copyright a {
+            color: #18bfef;
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .posts {
+                grid-template-columns: 1fr;
+            }
+
+            #nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .tech-stack {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Fade In Animation */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Preload */
+        .is-preload * {
+            animation: none !important;
+            transition: none !important;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0e27;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #18bfef, #9333ea);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper" class="fade-in">
+
+        <!-- Intro -->
+        <div id="intro">
+            <div class="content">
+                <span class="tag">📊 Eloge The Analyst Portfolio</span>
+                <h1>NORTHWIND 2025</h1>
+                <p style="font-size: 1.3em; color: rgba(255,255,255,0.9); margin-bottom: 0.5em;">
+                    Due Diligence Acquisition - International Food
+                </p>
+                <p style="font-size: 1em; color: rgba(255,255,255,0.75);">
+                    Analyse complète d'une acquisition stratégique d'une entreprise e-commerce B2B<br />
+                    dans le secteur food & hospitality
+                </p>
+                <div class="tech-stack">
+                    <div class="tech-badge">🐘 SQL (BigQuery)</div>
+                    <div class="tech-badge">📊 Power BI</div>
+                    <div class="tech-badge">📈 DAX Avancé</div>
+                    <div class="tech-badge">🔍 Data Modeling</div>
+                    <div class="tech-badge">💼 Business Intelligence</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header -->
+        <header id="header">
+            <a href="index.html" class="logo">Eloge IZERE</a>
+        </header>
+
+        <!-- Nav -->
+        <nav id="nav">
+            <ul class="links">
+                <li><a href="index.html">Portfolio</a></li>
+                <li class="active"><a href="northwind-2025.html">Northwind 2025</a></li>
+                <li><a href="index.html#projects">Autres Projets</a></li>
+            </ul>
+            <ul class="icons">
+                <li><a href="https://www.linkedin.com/in/eloge-izere-52166bb5" target="_blank">LinkedIn</a></li>
+                <li><a href="https://github.com/EIZERE" target="_blank">GitHub</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div id="main">
+
+            <!-- Featured Post -->
+            <article class="post featured">
+                <header class="major">
+                    <h2>Northwind 2025 - Due Diligence Acquisition</h2>
+                    <p>Projet d'analyse data complet simulant une due diligence M&A pour l'acquisition<br />
+                    d'International Food par NorthWind Traders. Analyse SQL avancée et dashboard Power BI exécutif
+                    pour une recommandation d'acquisition basée sur les données.</p>
+                </header>
+                <div class="image main">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&h=600&fit=crop" alt="Northwind Dashboard Preview" />
+                </div>
+                <ul class="actions special">
+                    <li><a href="#context" class="button large">Afficher le Projet</a></li>
+                </ul>
+            </article>
+
+            <!-- Context Section -->
+            <section class="posts" id="context">
+                <article>
+                    <header>
+                        <h2>Northwind Dashboard</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=500&fit=crop" alt="Dashboard Overview" />
+                    </div>
+                    <p><strong>Contexte</strong>: NorthWind Traders, face à une baisse de 18% de son chiffre d'affaires, envisage l'acquisition d'International Food, une entreprise e-commerce B2B en forte croissance (+45%) dans le secteur food & hospitality. 
+                    Mon rôle en tant que Data Analyst : réaliser une analyse complète pour recommander ou non cette acquisition valorisée à 8,5M€.</p>
+                    <ul class="actions special">
+                        <li><a href="#sql-analysis" class="button">Voir l'analyse complète</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <h2>🏢 NorthWind Traders</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop" alt="NorthWind Analysis" />
+                    </div>
+                    <p><strong>Enjeu :</strong> Diversification stratégique pour compenser la baisse d'activité.</p>
+                    <div class="metric">
+                        <span class="metric-value">-22%</span>
+                        <span class="metric-label">Performance Top 5 vendeurs</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">-35%</span>
+                        <span class="metric-label">Activité Top 3 clients</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">-18%</span>
+                        <span class="metric-label">Baisse CA 2024</span>
+                    </div>
+                </article>
+
+                <article>
+                    <header>
+                        <h2>🎯 International Food</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1556740758-90de374c12ad?w=800&h=500&fit=crop" alt="International Food Analysis" />
+                    </div>
+                    <p><strong>Activité :</strong> Vente de produits d'épicerie fine aux restaurants et hôtels.</p>
+                    <div class="metric">
+                        <span class="metric-value">8,5M€</span>
+                        <span class="metric-label">Valorisation demandée</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">+45%</span>
+                        <span class="metric-label">Croissance 3 ans</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value">B2B</span>
+                        <span class="metric-label">Food e-commerce</span>
+                    </div>
+                </article>
+
+                <article>
+                    <header>
+                        <h2>👤 Mon Rôle</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=500&fit=crop" alt="Role Description" />
+                    </div>
+                    <p style="color: #18bfef; font-weight: 700; font-size: 1.1em;">Data Analyst</p>
+                    <p>Mandaté pour réaliser la <strong>due diligence financière et opérationnelle</strong> de l'acquisition.</p>
+                    <p>Rapport direct au CFO et au comité d'acquisition pour la recommandation finale GO/NO GO.</p>
+                </article>
+            </section>
+
+            <!-- SQL Analysis Phase -->
+            <header class="major" id="sql-analysis">
+                <h2>🎯 Phase 1 : Analyse SQL & Data Engineering</h2>
+                <p>8 missions SQL progressives couvrant l'audit data, la modélisation, les KPIs financiers et l'analyse de risques.</p>
+            </header>
+
+            <section class="posts">
+                <article>
+                    <header>
+                        <span class="date">Mission 1</span>
+                        <h2>🔍 Audit de Qualité des Données</h2>
+                    </header>
+                    <p>Identification des anomalies critiques, validation de l'intégrité des données et détection des commandes annulées, valeurs manquantes et incohérences temporelles.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Détails</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Mission 2</span>
+                        <h2>🏗️ Modélisation Dimensionnelle</h2>
+                    </header>
+                    <p>Construction d'un modèle en étoile (Star Schema) avec tables de faits, dimensions temporelles et géographiques pour optimiser l'analyse.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Détails</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Mission 3</span>
+                        <h2>💰 KPIs Financiers Core</h2>
+                    </header>
+                    <p>Calcul des indicateurs clés : CA, panier moyen, revenus par client, taux de croissance MoM/YoY, et contribution par produit.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Détails</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Mission 4</span>
+                        <h2>📊 Analyse Cohort & Rétention</h2>
+                    </header>
+                    <p>Segmentation RFM, analyse de cohorte, taux de rétention client et identification des clients à risque avec distribution Pareto.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Détails</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Mission 5</span>
+                        <h2>🌍 Performance Géo & Produit</h2>
+                    </header>
+                    <p>Analyse de concentration géographique, classification ABC des produits, et identification des tendances de croissance par marché.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Détails</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Mission 6</span>
+                        <h2>📈 Saisonnalité & Forecasting</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop" alt="Forecasting Analysis" />
+                    </div>
+                    <p>Décomposition saisonnière, calcul de moyennes mobiles, détection d'anomalies et préparation des données pour le forecasting.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Détails</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Mission 7</span>
+                        <h2>⚠️ Red Flags & Risk Assessment</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=800&h=500&fit=crop" alt="Risk Assessment" />
+                    </div>
+                    <p>Identification des risques critiques : taux d'annulation, concentration client, volatilité des revenus et produits à faible rotation.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Détails</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Mission 8</span>
+                        <h2>📋 Executive Summary Tables</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=500&fit=crop" alt="Executive Summary" />
+                    </div>
+                    <p>Création de tables agrégées optimisées pour Power BI avec procédures de refresh automatisé et documentation complète.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Détails</a></li>
+                    </ul>
+                </article>
+            </section>
+
+            <!-- Power BI Phase -->
+            <header class="major" id="powerbi-dashboard">
+                <h2>📊 Phase 2 : Dashboard Power BI Exécutif</h2>
+                <p>Dashboard multi-pages avec DAX avancé, visualisations interactives et recommandation stratégique.</p>
+            </header>
+
+            <section class="posts">
+                <article>
+                    <header>
+                        <span class="date">Page 1</span>
+                        <h2>📊 Executive Summary</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop" alt="Executive Summary Dashboard" />
+                    </div>
+                    <p>Vue d'ensemble avec KPIs principaux, scorecard d'acquisition GO/NO GO, graphiques waterfall et alertes visuelles.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Dashboard</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Page 2</span>
+                        <h2>💎 Financial Deep Dive</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1554224154-26032ffc0d07?w=800&h=500&fit=crop" alt="Financial Analysis Dashboard" />
+                    </div>
+                    <p>Analyse financière approfondie avec évolution du CA, bridge charts YoY, analyse de marge et distribution Pareto.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Dashboard</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Page 3</span>
+                        <h2>👥 Customer Intelligence</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=500&fit=crop" alt="Customer Intelligence Dashboard" />
+                    </div>
+                    <p>Matrice RFM interactive, heatmap de rétention par cohorte, segmentation dynamique et analyse du customer journey.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Dashboard</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Page 4</span>
+                        <h2>🗺️ Product & Geo Performance</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&h=500&fit=crop" alt="Geographic Performance Dashboard" />
+                    </div>
+                    <p>Carte géographique interactive, matrice ABC produits, analyse de corrélation et évaluation du risque stock.</p>
+                    <ul class="actions special">
+                        <li><a href="#" class="button">Voir Dashboard</a></li>
+                    </ul>
+                </article>
+
+                <article>
+                    <header>
+                        <span class="date">Page 5</span>
+                        <h2>⚡ Risk Assessment & Recommendation</h2>
+                    </header>
+                    <div class="image fit">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop" alt="Risk Assessment Dashboard" />
+                    </div>
+                    <p>Dashboard des risques
